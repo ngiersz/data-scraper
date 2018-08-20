@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Vector;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,8 +13,12 @@ import java.util.Vector;
 @NoArgsConstructor
 public class Film {
 
+    private Long id;
+
     private String title;
-    private Vector<String> genres;
+
+    private List<String> genres;
+
     private int year;
 
     public Film(String title) {
@@ -26,7 +30,7 @@ public class Film {
         this.year = year;
     }
 
-    public Film(String title, int year, Vector<String> genres) {
+    public Film(String title, int year, List<String> genres) {
         this.title = title;
         this.year = year;
         this.genres = genres;
@@ -36,11 +40,4 @@ public class Film {
         return title + " (" + year + ") " + genres;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    public int getYear() {
-        return this.year;
-    }
 }
