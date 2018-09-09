@@ -2,6 +2,8 @@ package com.ngiersz.scraper.file;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,6 +14,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class CSVFile {
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     private String path;
 
@@ -44,7 +48,7 @@ public class CSVFile {
         //.withHeader("ID", "Name", "Designation", "Company"));
         csvPrinter.printRecord(data);
         csvPrinter.flush();
-        System.out.println("File " + filePath + " was created");
+        log.info("File " + filePath + " was created");
     }
 
     private void ascertainDirectoryExists() throws IOException {
