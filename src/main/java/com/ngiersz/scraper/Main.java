@@ -32,7 +32,7 @@ public class Main {
 
 
         CSVFile file = new CSVFile("C:\\Users\\ngier\\data-scraper\\dane");
-        file.createFile(data);
+        file.createFile(data, chosenClasses);
 //        file.createFile(data, "plik");
     }
 

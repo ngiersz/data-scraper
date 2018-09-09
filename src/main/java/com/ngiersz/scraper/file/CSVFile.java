@@ -32,20 +32,20 @@ public class CSVFile {
         this.path = path;
     }
 
-    public void createFile(List<List<String>> data) throws IOException {
+    public void createFile(List<List<String>> data, List<String> headers) throws IOException {
         ascertainDirectoryExists();
-        fillFileWithData(path + File.separator + getUniqueFileName(), data);
+        fillFileWithData(path + File.separator + getUniqueFileName(), data, headers);
     }
 
-    public void createFile(List<List<String>> data, String fileName) throws IOException {
+    public void createFile(List<List<String>> data, String fileName, List<String> headers) throws IOException {
         ascertainDirectoryExists();
-        fillFileWithData(path + File.separator + fileName + EXTENSION, data);
+        fillFileWithData(path + File.separator + fileName + EXTENSION, data, headers);
     }
 
-    private void fillFileWithData(String filePath, List<List<String>> data) throws IOException {
+    private void fillFileWithData(String filePath, List<List<String>> data, List<String> headers) throws IOException {
         BufferedWriter writer = Files.newBufferedWriter(Paths.get(filePath));
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT);
-        //.withHeader("ID", "Name", "Designation", "Company"));
+        csvPrinter.printRecord(headers);
         csvPrinter.printRecord(data);
         csvPrinter.flush();
         log.info("File " + filePath + " was created");
