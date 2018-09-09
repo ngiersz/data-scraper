@@ -32,17 +32,17 @@ public class CSVFile {
         this.path = path;
     }
 
-    public void createFile(List<String> data) throws IOException {
+    public void createFile(List<List<String>> data) throws IOException {
         ascertainDirectoryExists();
         fillFileWithData(path + File.separator + getUniqueFileName(), data);
     }
 
-    public void createFile(List<String> data, String fileName) throws IOException {
+    public void createFile(List<List<String>> data, String fileName) throws IOException {
         ascertainDirectoryExists();
         fillFileWithData(path + File.separator + fileName + EXTENSION, data);
     }
 
-    private void fillFileWithData(String filePath, List<String> data) throws IOException {
+    private void fillFileWithData(String filePath, List<List<String>> data) throws IOException {
         BufferedWriter writer = Files.newBufferedWriter(Paths.get(filePath));
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT);
         //.withHeader("ID", "Name", "Designation", "Company"));

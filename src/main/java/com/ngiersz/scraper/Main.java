@@ -1,5 +1,6 @@
 package com.ngiersz.scraper;
 
+import com.google.common.collect.Lists;
 import com.ngiersz.scraper.domain.FilmwebToFilmMapper;
 import com.ngiersz.scraper.file.CSVFile;
 import org.jsoup.Jsoup;
@@ -23,20 +24,21 @@ public class Main {
         List<String> classNames = mapper.getAllUniqueClassNames(doc);
 
         System.out.println("What data do you want to see? Choose one class from the list:");
-        for (String e: classNames
-             ) {
-            System.out.println(e);
-        }
+//        print(classNames);
 
-        String chosenClass = "filmPreview__info filmPreview__info--cast";
-        System.out.println("\nData from: " + chosenClass);
-        List<String> data = mapper.getTextFromSelectedClass(doc, chosenClass);
-//        for (String e: data) {
-//            System.out.println(e);
-//        }
+        List<String> chosenClasses = Lists.newArrayList("filmPreview__title", "filmPreview__year", "filmPreview__info filmPreview__info--cast");
+        System.out.println("\nData from: " + chosenClasses);
+        List<List<String>> data = mapper.getDataFromSelectedClasses(doc, chosenClasses);
+
 
         CSVFile file = new CSVFile("C:\\Users\\ngier\\data-scraper\\dane");
         file.createFile(data);
-        file.createFile(data, "plik");
+//        file.createFile(data, "plik");
+    }
+
+    private static void print(List<String> data) {
+        for (String e: data) {
+            System.out.println(e);
+        }
     }
 }
