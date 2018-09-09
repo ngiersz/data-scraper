@@ -1,7 +1,6 @@
 package com.ngiersz.scraper;
 
 import com.google.common.collect.Lists;
-import com.ngiersz.scraper.domain.FilmwebToFilmMapper;
 import com.ngiersz.scraper.file.CSVFile;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,7 +18,7 @@ public class Main {
 
         Document doc = Jsoup.parse(content);
 
-        FilmwebToFilmMapper mapper = new FilmwebToFilmMapper();
+        Scraper mapper = new Scraper();
 
         List<String> classNames = mapper.getAllUniqueClassNames(doc);
 
